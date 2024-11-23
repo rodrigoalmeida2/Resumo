@@ -1,6 +1,5 @@
-import whisper
+import whisper, yt_dlp, os
 from transformers import pipeline
-import yt_dlp
 
 # Função para baixar o áudio
 def download_audio(url, output_filename="audio"):
@@ -25,12 +24,12 @@ def transcricao():
 def Summa(texto):
     summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
     ARTICLE = texto
-    print(summarizer(ARTICLE, max_length=500, min_length=200, do_sample=False))
+    print(summarizer(ARTICLE, max_length=300, min_length=100, do_sample=False))
 
 def main(video_url):
     download_audio(video_url)
     trans = transcricao()
     Summa(trans)
+    os.remove('audio.mp3')
 
-
-main("https://youtu.be/GVTBZfeTDfU")
+main("https://youtu.be/q6kJ71tEYqM")
