@@ -15,7 +15,7 @@ def download_audio(url, output_filename="audio"):
 
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
-
+# Transcrever o audio
 def transcricao():
     modelo = whisper.load_model("small")
     result = modelo.transcribe("audio.mp3")
