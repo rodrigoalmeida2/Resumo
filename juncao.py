@@ -1,5 +1,5 @@
 import whisper
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, pipeline
+from transformers import pipeline
 import yt_dlp
 
 # Função para baixar o áudio
@@ -22,22 +22,18 @@ def transcricao():
     result = modelo.transcribe("audio.mp3")
     return result["text"]
 
-def Summa(pt_to_en):
+def Summa(texto):
     summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
 
-    ARTICLE = pt_to_en
+    ARTICLE = texto
 
-    print(summarizer(ARTICLE, max_length=200, min_length=50, do_sample=False))
+    print(summarizer(ARTICLE, max_length=500, min_length=200, do_sample=False))
 
-def main():
+def main(video_url):
+    download_audio(video_url)
     trans = transcricao()
     #PT_to_EN(trans)
     Summa(trans)
-    # URL do vídeo do qual você quer baixar o áudio
-    video_url = "https://youtu.be/GVTBZfeTDfU"
 
-    # Baixar o áudio
-    download_audio(video_url)
 
-    print(f"Download concluído. O áudio foi salvo como 'audio.mp3'")
-main()
+main("https://youtu.be/GVTBZfeTDfU")
