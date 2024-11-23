@@ -7,9 +7,9 @@ def download_audio(url, output_filename="audio"):
     ydl_opts = {
         'format': 'bestaudio/best',  # Escolhe o melhor formato de áudio disponível
         'outtmpl': output_filename,  # Nome do arquivo de saída
-        'postprocessors': [{  # Conversão do áudio para formato específico (se necessário)
+        'postprocessors': [{  # Conversão do áudio para formato específico
             'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3',  # Define o formato do áudio (mp3 neste caso)
+            'preferredcodec': 'mp3',  # Define o formato do áudio
             'preferredquality': '192',  # Define a qualidade do áudio (opcional)
         }]
     }
@@ -32,7 +32,6 @@ def Summa(texto):
 def main(video_url):
     download_audio(video_url)
     trans = transcricao()
-    #PT_to_EN(trans)
     Summa(trans)
 
 
