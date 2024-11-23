@@ -24,9 +24,7 @@ def transcricao():
 
 def Summa(texto):
     summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
-
     ARTICLE = texto
-
     print(summarizer(ARTICLE, max_length=500, min_length=200, do_sample=False))
 
 def main(video_url):
