@@ -16,7 +16,7 @@ def download_audio(url, output_filename="audio"):
         ydl.download([url])
 
 # URL do vídeo do qual você quer baixar o áudio
-video_url = "https://youtu.be/pbX1quxYP7I"
+video_url = "https://youtu.be/GVTBZfeTDfU"
 
 # Baixar o áudio
 download_audio(video_url)
