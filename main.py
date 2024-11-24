@@ -1,7 +1,12 @@
 import whisper, yt_dlp, os
 from transformers import pipeline
-import transformers
-import torch
+import torch, transformers
+from huggingface_hub import login
+from dotenv import load_dotenv
+
+load_dotenv()
+
+login(token=os.getenv('ACCESS_TOKEN'))
 
 # Função para baixar o áudio
 def download_audio(url, output_filename="audio"):
@@ -25,24 +30,10 @@ def transcricao():
     return result["text"]
 
 def text_Gen():
-    model_id = "meta-llama/Llama-3.2-3B-Instruct"
-    pipe = pipeline(
-        "text-generation",
-        model=model_id,
-        torch_dtype=torch.bfloat16,
-        device_map="auto",
-    )
-    messages = [
-        {"role": "system", "content": "You are a pirate chatbot who always responds in pirate speak!"},
-        {"role": "user", "content": "Who are you?"},
-    ]
-    outputs = pipe(
-        messages,
-        max_new_tokens=256,
-    )
-    print(outputs[0]["generated_text"][-1])
+    model_id = "meta-llama/Meta-Llama-3-8B"
 
-
+    pipeline = transformers.pipeline("text-generation", model=model_id, model_kwargs={"torch_dtype": torch.bfloat16}, device_map="auto")
+    pipeline("Hey how are you doing today?")
 
 
 def Summa(texto):
