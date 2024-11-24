@@ -46,6 +46,3 @@ def main(video_url):
     trans = transcricao()
     Summa(trans)
     os.remove('audio.mp3')
-
-#main("https://youtu.be/tHPCpso-Fr0")
-text_Gen()
