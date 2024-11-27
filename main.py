@@ -1,6 +1,5 @@
 import whisper, yt_dlp, os
 from transformers import pipeline
-import torch, transformers
 from huggingface_hub import login
 from dotenv import load_dotenv
 
@@ -29,20 +28,44 @@ def transcricao():
     result = modelo.transcribe("audio.mp3")
     return result["text"]
 
-def text_Gen():
-    model_id = "meta-llama/Meta-Llama-3-8B"
+def dividir_texto(texto, max_tokens):
+    palavras = texto.split()
+    partes = []
+    parte_atual = []
+    comprimento_atual = 0
 
-    pipeline = transformers.pipeline("text-generation", model=model_id, model_kwargs={"torch_dtype": torch.bfloat16}, device_map="auto")
-    pipeline("Hey how are you doing today?")
+    for palavra in palavras:
+        comprimento_atual += len(palavra) + 1  # Incluindo espaços
+        if comprimento_atual > max_tokens:
+            partes.append(' '.join(parte_atual))
+            parte_atual = [palavra]
+            comprimento_atual = len(palavra) + 1
+        else:
+            parte_atual.append(palavra)
+    partes.append(' '.join(parte_atual))  # Adiciona a última parte
+    return partes
 
 
-def Summa(texto):
+def text_Gen(texto, max_tokens):
     summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
-    ARTICLE = texto
-    print(summarizer(ARTICLE, max_length=300, min_length=100, do_sample=False))
+
+    # Divida o texto (assumindo que a função dividir_texto foi definida)
+    partes = dividir_texto(texto, max_tokens)
+
+    resumos = []
+    for parte in partes:
+        input_length = len(parte.split())  # Conta o número de palavras (ou tokens)
+        max_len = max(30, int(0.5 * input_length))  # Garantir que max_length seja no mínimo 30
+        resumos.append(summarizer(parte, max_length=max_len, min_length=10, do_sample=False)[0]['summary_text'])
+   
+    return resumos
 
 def main(video_url):
     download_audio(video_url)
     trans = transcricao()
-    Summa(trans)
     os.remove('audio.mp3')
+
+print(text_Gen())
+#download_audio("https://youtu.be/_uk_6vfqwTA")
+#tra = transcricao()
+#print(tra)
