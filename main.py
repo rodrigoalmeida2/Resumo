@@ -63,9 +63,7 @@ def text_Gen(texto, max_tokens):
 def main(video_url):
     download_audio(video_url)
     trans = transcricao()
+    print(text_Gen(trans, 1024))
     os.remove('audio.mp3')
 
-print(text_Gen())
-#download_audio("https://youtu.be/_uk_6vfqwTA")
-#tra = transcricao()
-#print(tra)
+main("https://youtu.be/-VgHk7UMPP4")
