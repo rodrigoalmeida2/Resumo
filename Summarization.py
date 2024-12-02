@@ -4,7 +4,6 @@ from transformers import pipeline
 from huggingface_hub import login
 from Download import AudioDownloader
 from Divide_Texto import TextSplitter
-from fpdf import FPDF
 
 class VideoSummarizer:
     """Classe principal do processo de resumo de vídeos."""
@@ -48,20 +47,3 @@ class VideoSummarizer:
             if os.path.exists(audio_file):
                 os.remove(audio_file)
                 print(f"Arquivo temporário {audio_file} removido.")
-    
-    def save_to_pdf(self, summaries, output_file="summary.pdf"):
-        """Salva os resumos gerados em um arquivo PDF."""
-        pdf = FPDF()
-        pdf.set_auto_page_break(auto=True, margin=15)
-        pdf.add_page()
-        pdf.set_font("Arial", size=12)
-
-        pdf.cell(200, 10, txt="Resumo do Vídeo", ln=True, align='C')
-        pdf.ln(10)  # Adiciona uma linha em branco
-
-        for idx, summary in enumerate(summaries, start=1):
-            pdf.multi_cell(0, 10, txt=f"{idx}. {summary}", align='L')
-            pdf.ln(5)  # Espaçamento entre os resumos
-
-        pdf.output(output_file)
-        print(f"Resumo salvo em {output_file}")
