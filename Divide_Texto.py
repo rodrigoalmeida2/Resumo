@@ -1,9 +1,9 @@
 class TextSplitter:
-    """Classe responsável por dividir um texto em partes menores."""
+    """divide o texto em partes menores."""
     
     @staticmethod
     def split(text, max_tokens):
-        """Divide o texto em partes menores com base no limite de tokens."""
+        """Divide o texto com base no limite de tokens."""
         words = text.split()
         parts = []
         current_part = []

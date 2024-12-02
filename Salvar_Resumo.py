@@ -2,11 +2,10 @@ from fpdf import FPDF
 from docx import Document
 
 class SaveSummaries:
-    """Classe responsável por salvar resumos em PDF e Word."""
+    """salva resumos em PDF e Word."""
     
     @staticmethod
     def save_to_pdf(summaries, output_file="summary.pdf"):
-        """Salva os resumos em um arquivo PDF."""
         pdf = FPDF()
         pdf.set_auto_page_break(auto=True, margin=15)
         pdf.add_page()
