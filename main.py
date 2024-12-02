@@ -1,6 +1,7 @@
+from Salvar_Resumo import SaveSummaries
+from Summarization import VideoSummarizer
 import os
 from dotenv import load_dotenv
-from Summarization import VideoSummarizer
 
 # Carrega variáveis de ambiente
 load_dotenv()
@@ -11,4 +12,6 @@ if __name__ == "__main__":
 
     summarizer = VideoSummarizer(token)
     summaries = summarizer.process_video(video_url)
-    summarizer.save_to_pdf(summaries, output_file="resumo_video.pdf")
+    # Salvar os resumos
+    SaveSummaries.save_to_pdf(summaries, output_file="resumo_video.pdf")
+    SaveSummaries.save_to_word(summaries, output_file="resumo_video.docx")
