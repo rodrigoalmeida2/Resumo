@@ -2,4 +2,5 @@ dl
 __pycache__
 audio.mp3
 .env
-teste
+teste.py
+translation.py

@@ -44,7 +44,7 @@ if st.button("Processar"):
                 st.success("Resumo gerado com sucesso!")
                 st.write("### Resumos:")
                 for idx, summary in enumerate(summaries, start=1):
-                    st.write(f"{summary}")
+                    st.write(f". {summary}")
 
                 # Salva os resumos em arquivos
                 pdf_file = "resumo_video.pdf"
