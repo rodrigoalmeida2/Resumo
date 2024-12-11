@@ -12,26 +12,3 @@ class Translator:
             translations.append(translated_text[0]['translation_text'])
         return translations
 
-# Exemplo de uso
-if __name__ == "__main__":
-    # Resumos gerados previamente
-    summaries = [
-        "Tom tried to stab me.",
-        "The weather is great today.",
-        "Machine learning is fascinating."
-    ]
-
-    # Inicializa a classe Translator
-    translator = Translator()
-
-    # Traduz os resumos
-    translated_summaries = translator.translate(summaries, target_language="por")
-
-    # Exibe os resultados
-    print("Resumos Originais:")
-    for summary in summaries:
-        print(f" - {summary}")
-
-    print("\nResumos Traduzidos:")
-    for translated in translated_summaries:
-        print(f" - {translated}")
