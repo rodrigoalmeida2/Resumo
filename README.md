@@ -1,6 +1,6 @@
 # YouTube Video Summarizer and Translator
 
-This project is a Python-based application that generates summaries of YouTube videos and translates them into multiple languages. The summarized and translated text can be downloaded as PDF and Word files through a user-friendly Streamlit interface.
+This project is a Python-based application that generates summaries of YouTube videos and translates them into other languages if needed, using Hugging Face as its main source of pretrained models. The summarized and translated text can be downloaded as PDF, WORD or TXT files through an Streamlit interface.
 
 ## Features
 
@@ -8,7 +8,7 @@ This project is a Python-based application that generates summaries of YouTube v
 - **Audio Transcription**: Convert audio to text using the Whisper model.
 - **Summarization**: Generate concise summaries using a Hugging Face summarization pipeline.
 - **Translation**: Translate the summaries into different languages using a Hugging Face translation pipeline.
-- **File Export**: Save summaries and translations as PDF and Word files.
+- **File Export**: Save summaries and translations as PDF, WORD or TXT files.
 - **Streamlit Interface**: A simple web-based UI for inputting video URLs and downloading output files.
 
 ## Requirements
@@ -20,15 +20,19 @@ This project is a Python-based application that generates summaries of YouTube v
   - `yt-dlp`
   - `whisper`
   - `python-docx`
-  - `reportlab`
+  - `fpdf`
   - `python-dotenv`
+
+## FFmpeg
+- Yout gotta have FFmpeg already installed in your machine
+- FFmpeg is the leading multimedia framework, able to decode, encode, transcode, mux, demux, stream, filter and play pretty much anything that humans and machines have created.
+- Go to https://www.ffmpeg.org/
 
 ## Setup Instructions
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/your-repository.git
-   cd your-repository
+   git clone https://github.com/rodrigoalmeida2/Resumo.git
    ```
 
 2. **Install Dependencies**:
@@ -53,8 +57,9 @@ This project is a Python-based application that generates summaries of YouTube v
 .
 ├── main.py                # Main Streamlit interface script
 ├── video_summarizer.py    # Handles downloading, transcribing, and summarizing
-├── save_summaries.py      # Handles exporting summaries as PDF and Word files
+├── save_summaries.py      # Handles exporting summaries as PDF, WORD and TXT files
 ├── translator.py          # Handles translation of summaries
+├── Download.py            # Download the audio of the video
 ├── requirements.txt       # Python dependencies
 ├── .env                   # Environment variables
 └── README.md              # Project documentation
@@ -65,20 +70,7 @@ This project is a Python-based application that generates summaries of YouTube v
 1. Run the Streamlit application using the setup instructions.
 2. Enter the URL of a YouTube video in the provided input field.
 3. Click the "Process" button to generate the summary.
-4. Download the summary and translation as PDF or Word files using the respective buttons.
-
-## Examples
-
-### Generated Summary
-Original Summary:
-```
-Machine learning is fascinating and widely applied across industries.
-```
-
-### Translated Summary (Portuguese):
-```
-O aprendizado de máquina é fascinante e amplamente aplicado em diversas indústrias.
-```
+4. Download the summary and translation as files using the respective buttons.
 
 ## Models Used
 
@@ -88,7 +80,7 @@ O aprendizado de máquina é fascinante e amplamente aplicado em diversas indús
 
 ## Contributing
 
-Feel free to open issues or submit pull requests to contribute to this project. Make sure to follow the standard coding guidelines and document your changes.
+Feel free to open issues or submit pull requests to contribute to this project.
 
 ## License
 
