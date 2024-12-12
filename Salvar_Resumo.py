@@ -1,9 +1,8 @@
 from fpdf import FPDF
 from docx import Document
 
+# salva resumos em PDF e Word e txt
 class SaveSummaries:
-    """salva resumos em PDF e Word e txt"""
-    
     @staticmethod
     def save_to_pdf(summaries, output_file="summary.pdf"):
         pdf = FPDF()

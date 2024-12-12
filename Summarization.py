@@ -4,10 +4,8 @@ from transformers import pipeline
 from huggingface_hub import login
 from Download import AudioDownloader
 
-
+# Classe principal do processo de resumo de vídeos
 class VideoSummarizer:
-    """Classe principal do processo de resumo de vídeos."""
-    
     def __init__(self, token):
         # Login no Hugging Face
         login(token=token)
