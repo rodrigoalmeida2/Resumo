@@ -1,8 +1,7 @@
 import yt_dlp
 
+# baixa o áudio de um vídeo do YouTube
 class AudioDownloader:
-    """baixa o áudio de um vídeo do YouTube."""
-    
     @staticmethod
     def download(video_url, output_filename="audio"):
         ydl_opts = {

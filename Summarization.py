@@ -3,7 +3,7 @@ import whisper
 from transformers import pipeline
 from huggingface_hub import login
 from Download import AudioDownloader
-from Divide_Texto import TextSplitter
+
 
 class VideoSummarizer:
     """Classe principal do processo de resumo de vídeos."""
@@ -15,7 +15,6 @@ class VideoSummarizer:
         self.transcription_model = whisper.load_model("small")
         self.summarization_pipeline = pipeline("summarization", model="facebook/bart-large-cnn")
         self.audio_downloader = AudioDownloader()
-        self.text_splitter = TextSplitter()
 
     def transcribe_audio(self, audio_file):
         """Transcreve o áudio usando o modelo Whisper."""
@@ -23,9 +22,28 @@ class VideoSummarizer:
         print("Transcrição concluída.")
         return result["text"]
 
+    @staticmethod
+    def split(text, max_tokens):
+        """."""
+        words = text.split()
+        parts = []
+        current_part = []
+        current_length = 0
+
+        for word in words:
+            current_length += len(word) + 1  # Inclui o espaço
+            if current_length > max_tokens:
+                parts.append(' '.join(current_part))
+                current_part = [word]
+                current_length = len(word) + 1
+            else:
+                current_part.append(word)
+        parts.append(' '.join(current_part))
+        return parts
+
     def summarize_text(self, text, max_tokens=1024):
         """Gera um resumo para o texto dado."""
-        parts = self.text_splitter.split(text, max_tokens)
+        parts = self.split(text, max_tokens)
         summaries = []
         for part in parts:
             input_length = len(part.split())

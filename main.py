@@ -30,7 +30,7 @@ video_url = st.text_input("Insira o URL do vídeo:")
 # Opção para escolher o formato de saída
 st.session_state['output_format'] = st.radio(
     "Selecione o formato de saída:",
-    options=["PDF", "DOCX"],
+    options=["PDF", "DOCX", "TXT"],
     index=0
 )
 
@@ -70,8 +70,10 @@ if st.button("Processar"):
                 output_file = f"resumo_video.{st.session_state['output_format'].lower()}"
                 if st.session_state['output_format'] == "PDF":
                     SaveSummaries.save_to_pdf(summaries, output_file)
-                else:
+                elif st.session_state['output_format'] == "DOCX":
                     SaveSummaries.save_to_word(summaries, output_file)
+                else:
+                    SaveSummaries.save_to_txt(summaries, output_file)
 
                 # Atualiza o estado com o nome do arquivo
                 st.session_state['output_file'] = output_file
@@ -92,12 +94,10 @@ if st.session_state['output_file']:
         )
 
 # Limpeza dos arquivos gerados
-if st.button("Limpar estado"):
-    if st.session_state['output_file'] and os.path.exists(st.session_state['output_file']):
-        os.remove(st.session_state['output_file'])
+#if st.button("Limpar estado"):
+if st.session_state['output_file'] and os.path.exists(st.session_state['output_file']):
+    os.remove(st.session_state['output_file'])
 
-    # Reseta o estado
-    st.session_state['summaries'] = None
-    st.session_state['output_file'] = None
-
-    st.success("Estado limpo com sucesso!")
+# Reseta o estado
+st.session_state['summaries'] = None
+st.session_state['output_file'] = None
