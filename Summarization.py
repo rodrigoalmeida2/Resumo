@@ -22,7 +22,7 @@ class VideoSummarizer:
 
     @staticmethod
     def split(text, max_tokens):
-        """."""
+        """Divide o texto no limite máximo de tokens"""
         words = text.split()
         parts = []
         current_part = []
