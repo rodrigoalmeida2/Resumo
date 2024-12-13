@@ -3,7 +3,7 @@ import streamlit as st
 from dotenv import load_dotenv
 from Summarization import VideoSummarizer
 from Salvar_Resumo import SaveSummaries
-from translation import Translator  # Supondo que você tenha um módulo para tradução
+from translation import Translator
 
 # Carrega variáveis de ambiente
 load_dotenv()
