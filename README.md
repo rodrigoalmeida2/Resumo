@@ -51,20 +51,6 @@ This project is a Python-based application that generates summaries of YouTube v
    streamlit run main.py
    ```
 
-## Project Structure
-
-```
-.
-├── main.py                # Main Streamlit interface script
-├── video_summarizer.py    # Handles downloading, transcribing, and summarizing
-├── save_summaries.py      # Handles exporting summaries as PDF, WORD and TXT files
-├── translator.py          # Handles translation of summaries
-├── Download.py            # Download the audio of the video
-├── requirements.txt       # Python dependencies
-├── .env                   # Environment variables
-└── README.md              # Project documentation
-```
-
 ## Usage
 
 1. Run the Streamlit application using the setup instructions.
