@@ -28,6 +28,12 @@ This project is a Python-based application that generates summaries of YouTube v
 - FFmpeg is the leading multimedia framework, able to decode, encode, transcode, mux, demux, stream, filter and play pretty much anything that humans and machines have created.
 - Go to https://www.ffmpeg.org/
 
+## Huggin Face 
+- Create your account
+- Go to your profile
+- Click on Access Tokens
+- Create your token
+
 ## Setup Instructions
 
 1. **Clone the Repository**:
